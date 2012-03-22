@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Quantity:</b>
+  <%= @preference.quantity %>
+</p>
+
+<p>
+  <b>Size:</b>
+  <%= @preference.size %>
+</p>
+
+<p>
+  <b>Crust:</b>
+  <%= @preference.crust %>
+</p>
+
+<p>
+  <b>Price:</b>
+  <%= @preference.price %>
+</p>
+
+
+<%= link_to 'Edit', edit_preference_path(@preference) %> |
+<%= link_to 'Back', preferences_path %>

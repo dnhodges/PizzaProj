@@ -1,0 +1,25 @@
+<h1>Listing includes_drinks</h1>
+
+<table>
+  <tr>
+    <th>Drink name</th>
+    <th>Manufacturer</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @includes_drinks.each do |includes_drink| %>
+  <tr>
+    <td><%= includes_drink.drink_name %></td>
+    <td><%= includes_drink.manufacturer %></td>
+    <td><%= link_to 'Show', includes_drink %></td>
+    <td><%= link_to 'Edit', edit_includes_drink_path(includes_drink) %></td>
+    <td><%= link_to 'Destroy', includes_drink, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Includes drink', new_includes_drink_path %>
