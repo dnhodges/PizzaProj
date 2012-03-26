@@ -11,6 +11,8 @@ Pizzaproj::Application.routes.draw do
 
   resources :customers
 
+  root :to => 'customers#new'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
