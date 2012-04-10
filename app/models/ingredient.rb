@@ -9,4 +9,5 @@ class Ingredient < ActiveRecord::Base
 	validates :ingred_name, length: {:in => 1..15}
 	validates :description, length: {:in => 1..50}
 
+
 end

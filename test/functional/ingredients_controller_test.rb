@@ -2,6 +2,12 @@ require 'test_helper'
 
 class IngredientsControllerTest < ActionController::TestCase
   setup do
+    @input_attributes = {
+      ingred_name:    'Pepperoni',
+      description:    'Mystery meat.',
+      price:          0.50
+    }
+
     @ingredient = ingredients(:one)
   end
 
@@ -18,7 +24,7 @@ class IngredientsControllerTest < ActionController::TestCase
 
   test "should create ingredient" do
     assert_difference('Ingredient.count') do
-      post :create, ingredient: @ingredient.attributes
+      post :create, ingredient: @input_attributes #@ingredient.attributes
     end
 
     assert_redirected_to ingredient_path(assigns(:ingredient))
@@ -35,7 +41,7 @@ class IngredientsControllerTest < ActionController::TestCase
   end
 
   test "should update ingredient" do
-    put :update, id: @ingredient, ingredient: @ingredient.attributes
+    put :update, id: @ingredient.to_param, ingredient: @input_attributes
     assert_redirected_to ingredient_path(assigns(:ingredient))
   end
 

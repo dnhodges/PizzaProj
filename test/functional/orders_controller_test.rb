@@ -2,6 +2,11 @@ require 'test_helper'
 
 class OrdersControllerTest < ActionController::TestCase
   setup do
+    @input_attributes = {
+      order_time:   Time.now,
+      price:        15.00,
+      delivered:    true,
+    }
     @order = orders(:one)
   end
 
@@ -18,7 +23,7 @@ class OrdersControllerTest < ActionController::TestCase
 
   test "should create order" do
     assert_difference('Order.count') do
-      post :create, order: @order.attributes
+      post :create, order: @input_attributes#@order.attributes
     end
 
     assert_redirected_to order_path(assigns(:order))
@@ -35,7 +40,7 @@ class OrdersControllerTest < ActionController::TestCase
   end
 
   test "should update order" do
-    put :update, id: @order, order: @order.attributes
+    put :update, id: @order.to_param, order: @input_attributes
     assert_redirected_to order_path(assigns(:order))
   end
 

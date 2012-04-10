@@ -1,7 +1,25 @@
 Pizzaproj::Application.routes.draw do
-  resources :includes_drinks
+
+  get "welcome/hello"
+
+  get 'admin' => 'admin#index'
+
+  controller :sessions do
+    get   'login'   => :new
+    post  'login'   => :create
+    delete 'logout'  => :destroy
+  end
+  #get "admin/index"
+
+  #get "sessions/new"
+
+  #get "sessions/create"
+
+  #get "sessions/destroy"
 
   resources :taxes
+
+  resources :includes_drinks
 
   resources :ingredients
 
@@ -11,7 +29,8 @@ Pizzaproj::Application.routes.draw do
 
   resources :customers
 
-  root :to => 'customers#new'
+  root :to => 'welcome#hello'
+  #root :to => 'customers#new'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

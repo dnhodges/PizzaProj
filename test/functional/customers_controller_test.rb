@@ -2,7 +2,17 @@ require 'test_helper'
 
 class CustomersControllerTest < ActionController::TestCase
   setup do
+    @input_attributes = {
+      email:      'test@test.org',
+      first_name: 'test',
+      last_name:  'smith',
+      password_digest:   'private',
+     # password_confirmation: 'private',
+      phone:      '3015783932',
+      address:    '123 Fake Street Chantilly, VA 20879'
+    }
     @customer = customers(:one)
+
   end
 
   test "should get index" do
@@ -18,10 +28,10 @@ class CustomersControllerTest < ActionController::TestCase
 
   test "should create customer" do
     assert_difference('Customer.count') do
-      post :create, customer: @customer.attributes
+      post :create, customer: @input_attributes #@customer.attributes
     end
 
-    assert_redirected_to customer_path(assigns(:customer))
+    assert_redirected_to customers_path#(assigns(:customer))
   end
 
   test "should show customer" do
@@ -35,8 +45,8 @@ class CustomersControllerTest < ActionController::TestCase
   end
 
   test "should update customer" do
-    put :update, id: @customer, customer: @customer.attributes
-    assert_redirected_to customer_path(assigns(:customer))
+    put :update, id: @customer.to_param, customer: @input_attributes
+    assert_redirected_to customers_path#(assigns(:customer))
   end
 
   test "should destroy customer" do

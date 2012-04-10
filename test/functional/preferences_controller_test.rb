@@ -2,6 +2,12 @@ require 'test_helper'
 
 class PreferencesControllerTest < ActionController::TestCase
   setup do
+    @input_attributes =  {
+      quantity:       5,
+      size:           'M',
+      crust:          'T',
+      price:          80.99
+    }
     @preference = preferences(:one)
   end
 
@@ -18,7 +24,7 @@ class PreferencesControllerTest < ActionController::TestCase
 
   test "should create preference" do
     assert_difference('Preference.count') do
-      post :create, preference: @preference.attributes
+      post :create, preference: @input_attributes
     end
 
     assert_redirected_to preference_path(assigns(:preference))
@@ -35,7 +41,7 @@ class PreferencesControllerTest < ActionController::TestCase
   end
 
   test "should update preference" do
-    put :update, id: @preference, preference: @preference.attributes
+    put :update, id: @preference.to_param, preference: @input_attributes
     assert_redirected_to preference_path(assigns(:preference))
   end
 

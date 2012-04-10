@@ -25,6 +25,7 @@ class OrdersController < ApplicationController
   # GET /orders/new.json
   def new
     @order = Order.new
+    1.times { @order.preferences.build }
 
     respond_to do |format|
       format.html # new.html.erb
@@ -47,6 +48,7 @@ class OrdersController < ApplicationController
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
         format.json { render json: @order, status: :created, location: @order }
       else
+        #format.html { render :text => "FAIL"}
         format.html { render action: "new" }
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end

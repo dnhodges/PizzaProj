@@ -1,10 +1,12 @@
 class Preference < ActiveRecord::Base
+	attr_accessible :quantity, :size, :crust, :price
+
 	validates :quantity, :size, :crust, :price, presence: true
 
 	validates :price, numericality: {greater_than_or_equal_to: 0.01}
 	validates :quantity, numericality: {greater_than_or_equal_to: 1}
 
-	validates :valid_size, :valid_crust
+	#validates :valid_size, :valid_crust
 	
 	belongs_to :order
 	has_many :ingredients 
@@ -12,6 +14,9 @@ class Preference < ActiveRecord::Base
 	# Length validations
 	validates :size, :crust, length: {:is => 1}
 
+	SIZES = ['S', 'M', 'L']
+	CRUST_TYPES = ['T', 'H', 'P']
+	
 	def valid_size
 		if :size != 'S' || :size != 'M' || :size != 'L'
 			errors.add(:size, "is an invalid pizza size.")

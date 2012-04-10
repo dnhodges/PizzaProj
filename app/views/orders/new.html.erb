@@ -1,5 +1,34 @@
 <h1>New order</h1>
 
-<%= render 'form' %>
+<%= form_for @order do |f| %>
+	<%= @order.errors.full_messages %>
+	<p>
+		<%= f.label :order_time %> <br />
+		<%= f.text_field :order_time %> <br />
 
-<%= link_to 'Back', orders_path %>
+		<%= f.label :price %> <br />
+		<%= f.text_field :price %> <br />
+
+		<%= f.label :delivered %> <br />
+		<%= f.check_box :delivered %> <br />
+	</p>
+
+	<%= f.fields_for :preferences do |builder| %>
+		<p>
+			<%= builder.label :quantity %><br />
+			<%= builder.number_field :quantity %><br />
+
+			<%= builder.label :size %><br />
+			<%= builder.text_field :size %><br />
+
+			<%= builder.label :crust %><br />
+			<%= builder.text_field :crust %><br />
+ 
+			<%= builder.label :price %><br />
+			<%= builder.text_field :price %><br />
+
+		</p>
+	<% end %>
+	<p><%= f.submit "Submit" %></p>
+<% end %>
+

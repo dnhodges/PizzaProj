@@ -2,8 +2,10 @@
 
 one:
   drink_name: MyString
+  description: MyString
   manufacturer: MyString
 
 two:
   drink_name: MyString
+  description: MyString
   manufacturer: MyString

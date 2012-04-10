@@ -2,6 +2,12 @@ require 'test_helper'
 
 class IncludesDrinksControllerTest < ActionController::TestCase
   setup do
+    @input_attributes = {
+      drink_name:     'Fanta',
+      manufacturer:   'Coca-Cola',
+      description:    'This soda',
+      price:          3.39
+    }
     @includes_drink = includes_drinks(:one)
   end
 
@@ -18,7 +24,7 @@ class IncludesDrinksControllerTest < ActionController::TestCase
 
   test "should create includes_drink" do
     assert_difference('IncludesDrink.count') do
-      post :create, includes_drink: @includes_drink.attributes
+      post :create, includes_drink: @input_attributes #@includes_drink.attributes
     end
 
     assert_redirected_to includes_drink_path(assigns(:includes_drink))
@@ -35,7 +41,7 @@ class IncludesDrinksControllerTest < ActionController::TestCase
   end
 
   test "should update includes_drink" do
-    put :update, id: @includes_drink, includes_drink: @includes_drink.attributes
+    put :update, id: @includes_drink.to_param, includes_drink: @input_attributes
     assert_redirected_to includes_drink_path(assigns(:includes_drink))
   end
 

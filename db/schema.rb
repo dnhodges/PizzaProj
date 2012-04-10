@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120322155453) do
+ActiveRecord::Schema.define(:version => 20120408170500) do
 
   create_table "customers", :force => true do |t|
     t.string   "email",                                                          :null => false
@@ -26,10 +26,12 @@ ActiveRecord::Schema.define(:version => 20120322155453) do
   end
 
   create_table "includes_drinks", :force => true do |t|
-    t.string   "drink_name",   :null => false
-    t.string   "manufacturer", :null => false
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.string   "drink_name",                                                  :null => false
+    t.string   "manufacturer",                                                :null => false
+    t.string   "description",                                                 :null => false
+    t.decimal  "price",        :precision => 8, :scale => 2, :default => 0.0
+    t.datetime "created_at",                                                  :null => false
+    t.datetime "updated_at",                                                  :null => false
   end
 
   create_table "ingredients", :force => true do |t|
@@ -41,11 +43,11 @@ ActiveRecord::Schema.define(:version => 20120322155453) do
   end
 
   create_table "orders", :force => true do |t|
-    t.datetime "order_time",                               :default => '2012-03-22 15:17:42', :null => false
-    t.decimal  "price",      :precision => 8, :scale => 2,                                    :null => false
-    t.boolean  "delivered",                                :default => false,                 :null => false
-    t.datetime "created_at",                                                                  :null => false
-    t.datetime "updated_at",                                                                  :null => false
+    t.datetime "order_time",                                                  :null => false
+    t.decimal  "price",      :precision => 8, :scale => 2,                    :null => false
+    t.boolean  "delivered",                                :default => false, :null => false
+    t.datetime "created_at",                                                  :null => false
+    t.datetime "updated_at",                                                  :null => false
   end
 
   create_table "preferences", :force => true do |t|
@@ -55,14 +57,15 @@ ActiveRecord::Schema.define(:version => 20120322155453) do
     t.decimal  "price",      :precision => 8, :scale => 2, :default => 0.0, :null => false
     t.datetime "created_at",                                                :null => false
     t.datetime "updated_at",                                                :null => false
+    t.integer  "order_id"
   end
 
   create_table "taxes", :force => true do |t|
-    t.string   "state",                       :null => false
-    t.string   "tax_name",                    :null => false
-    t.decimal  "amount",     :default => 0.0, :null => false
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
+    t.string   "state",      :null => false
+    t.string   "tax_name",   :null => false
+    t.decimal  "amount",     :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end
