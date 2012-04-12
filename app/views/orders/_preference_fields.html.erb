@@ -1,0 +1,19 @@
+<div class="field">
+  <%= builder.label "Enter quantity:" %>
+  <%= builder.number_field :quantity %>
+</div>
+<div class="field">
+  Select size: <%= builder.select :size, [["Select size", nil], 'S', 'M', 'L']%>
+</div>
+<div class="field">
+  Select crust: <%= builder.select :crust, [["Select crust", nil], 'Thick', 'Thin', 'Stuffed'] %>
+</div>
+
+
+<%= builder.fields_for :ingredients do |ib| %>
+  <%= render "ingredient_fields", :ib=>ib %>
+<% end %>
+
+
+<!--
+-->

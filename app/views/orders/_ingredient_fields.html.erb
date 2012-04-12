@@ -1,0 +1,3 @@
+<div class="field">
+  Select ingredient: <%= ib.select(:ingred_name, Ingredient.all.collect do |i| i.ingred_name end, {:include_blank => "None"}) %>
+</div>
