@@ -14,6 +14,7 @@ class OrdersController < ApplicationController
   # GET /orders/1.json
   def show
     @order = Order.find(params[:id])
+    @preference = @order.preferences
 
     respond_to do |format|
       format.html # show.html.erb
@@ -25,7 +26,8 @@ class OrdersController < ApplicationController
   # GET /orders/new.json
   def new
     @order = Order.new
-    1.times { @order.preferences.build }
+    preference = @order.preferences.build
+    preference.ingredients.build
 
     respond_to do |format|
       format.html # new.html.erb
