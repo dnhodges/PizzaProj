@@ -22,14 +22,50 @@
     <%= f.text_field :price %>
   </div>
   <div class="field">
-    <%= f.label :delivered, "Delivered?" %>
+    <%= f.label :delivered, "Delivered Yet?" %>
     <%= f.check_box :delivered %>
   </div>
 
 
-  <%= f.fields_for :preferences do |builder| %>
-    <%= render "preference_fields", :builder=>builder %>
+
+  <%= f.fields_for :preferences do |p| %>
+    <div class="field">
+      <%= p.label "Enter quantity:" %>
+      <%= p.number_field :quantity %>
+    </div>
+    <div class="field">
+      Select size: <%= p.select :size, [["Select size", nil], 'S', 'M', 'L']%>
+    </div>
+    <div class="field">
+      Select crust: <%= p.select :crust, [["Select crust", nil], 'Thick', 'Thin', 'Stuffed'] %>
+    </div>
+
+    <div class="field">
+      <%= p.fields_for :ingredients do |i| %>
+        <%= i.label "Select ingredients:" %> <br />
+        <%= i.collection_select :ingredient_ids, Ingredient.all, :id, :ingred_name, {}, {:multiple => true, :size => 4} %>
+      <% end %> 
+    </div>
   <% end %>
+
+
+
+
+  <!-- When the movie is being created I just want to select the actors. Once it's been created I'll add the character names -->
+    <%#= f.label :ingredients, "Ingredients:" %><br />
+
+    <!-- Any of these will generate the correct select box. It's mostly just a matter of personal preference -->
+
+    <%#= f.select :actor_ids, Actor.all.collect {|a| [ a.name, a.id ] }, {}, {:multiple => true, :size => 3} %>
+
+    <%#= f.collection_select :ingredient_ids, Ingredient.all, :id, :ingred_name, {}, {:multiple => true, :size => 4} %>
+
+    <%#= collection_select :movie, :actor_ids, Actor.all, :id, :name, {}, {:multiple => true, :size => 3} %>
+
+    <%#= select :movie, :actor_ids, Actor.all.collect {|a| [ a.name, a.id ] }, {}, {:multiple => true, :size => 3} %>
+
+
+
 
 <div class="actions">
   <%= f.submit %>
