@@ -1,5 +1,14 @@
 class Preference < ActiveRecord::Base
-	attr_accessible :ingredients_attributes, :quantity, :size, :crust, :price
+	validates_presence_of :order_id, :ingredient_id
+
+	belongs_to :order
+	belongs_to :ingredient
+	#accepts_nested_attributes_for :order
+	accepts_nested_attributes_for :ingredient
+	#has_many :ingredients 
+	#accepts_nested_attributes_for :ingredients#, :reject_if => lambda { |a| a[:ingred_name].blank? }, :allow_destroy => true
+
+	#attr_accessible :ingredients_attributes, :quantity, :size, :crust, :price
 
 	before_save :calc_subtotal
 
@@ -11,9 +20,6 @@ class Preference < ActiveRecord::Base
 	#accept
 	validate :valid_size, :valid_crust
 	
-	belongs_to :order
-	has_many :ingredients 
-	accepts_nested_attributes_for :ingredients#, :reject_if => lambda { |a| a[:ingred_name].blank? }, :allow_destroy => true
 	
 	# Length validations
 	validates :size, length: {:is => 1}
