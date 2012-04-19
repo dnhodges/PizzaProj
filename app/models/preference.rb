@@ -1,10 +1,11 @@
 class Preference < ActiveRecord::Base
-	validates_presence_of :order_id, :ingredient_id
+	#validates_presence_of :order_id, :ingredient_id
 
-	belongs_to :order
-	belongs_to :ingredient
+	#belongs_to :order
+	#belongs_to :ingredient
+	has_many :ingredients
 	#accepts_nested_attributes_for :order
-	accepts_nested_attributes_for :ingredient
+	accepts_nested_attributes_for :ingredients
 	#has_many :ingredients 
 	#accepts_nested_attributes_for :ingredients#, :reject_if => lambda { |a| a[:ingred_name].blank? }, :allow_destroy => true
 
@@ -12,10 +13,10 @@ class Preference < ActiveRecord::Base
 
 	before_save :calc_subtotal
 
-	validates :quantity, :size, :crust, :price, presence: true
+	#validates :quantity, :size, :crust, :price, presence: true
 
 	#validates :price, numericality: {greater_than_or_equal_to: 0.01}
-	validates :quantity, numericality: {greater_than_or_equal_to: 1}
+	#validates :quantity, numericality: {greater_than_or_equal_to: 1}
 
 	#accept
 	validate :valid_size, :valid_crust

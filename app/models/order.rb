@@ -11,9 +11,9 @@ class Order < ActiveRecord::Base
 	has_many :includes_drinks#, :dependent => destroy
 	
 	has_many :preferences#, :dependent => :destroy
-	has_many :ingredients, :through => :preferences, :foreign_key => :ingredient_id
+	#has_many :ingredients#, :through => :preferences#, :foreign_key => :ingredient_id
 	accepts_nested_attributes_for :preferences#, :reject_if => lambda { |a| a[:size].blank? }, :allow_destroy => true
-	accepts_nested_attributes_for :ingredients
+	#accepts_nested_attributes_for :ingredients
 	#accepts_nested_attributes_for  :includes_drinks
 
 

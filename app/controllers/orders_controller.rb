@@ -26,10 +26,10 @@ class OrdersController < ApplicationController
   # GET /orders/new.json
   def new
     @order = Order.new
-    @order.preferences.build.build_ingredient
+    #@order.preferences.build.build_ingredient
 
-   # preference = @order.preferences.build
-   # preference.ingredients.build
+    preference = @order.preferences.build
+    preference.ingredients.build
 
     respond_to do |format|
       format.html # new.html.erb

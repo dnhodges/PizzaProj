@@ -39,21 +39,17 @@
     <div class="field">
       Select crust: <%= p.select :crust, [["Select crust", nil], 'Thick', 'Thin', 'Stuffed'] %>
     </div>
+   <%= p.collection_select(:ingredient_ids, Ingredient.all, :id, :ingred_name, {:include_blank => true}, {:multiple => true, :size=>4}) %>
 
-    <div class="field">
-      <%= p.fields_for :ingredients do |i| %>
-        <%= i.label "Select ingredients:" %> <br />
-        <%= i.collection_select :ingredient_ids, Ingredient.all, :id, :ingred_name, {}, {:multiple => true, :size => 4} %>
-      <% end %> 
-    </div>
   <% end %>
 
 
 
 
-  <!-- When the movie is being created I just want to select the actors. Once it's been created I'll add the character names -->
-    <%#= f.label :ingredients, "Ingredients:" %><br />
 
+  <!-- When the movie is being created I just want to select the actors. Once it's been created I'll add the character names 
+    <%#= f.label :ingredients, "Ingredients:" %><br />
+    <%#= f.collection_select(:ingredient_ids, Ingredient.all, :id, :ingred_name, {:selected => @order.ingredient_ids, :include_blank => true}, {:size=>4}) %>-->
     <!-- Any of these will generate the correct select box. It's mostly just a matter of personal preference -->
 
     <%#= f.select :actor_ids, Actor.all.collect {|a| [ a.name, a.id ] }, {}, {:multiple => true, :size => 3} %>
