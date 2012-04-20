@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120416232222) do
+ActiveRecord::Schema.define(:version => 20120420015444) do
 
   create_table "customers", :force => true do |t|
     t.string   "email",                                                          :null => false
@@ -34,13 +34,22 @@ ActiveRecord::Schema.define(:version => 20120416232222) do
     t.datetime "updated_at",                                                  :null => false
   end
 
+  create_table "includes_drinks_orders", :id => false, :force => true do |t|
+    t.integer "includes_drink_id"
+    t.integer "order_id"
+  end
+
   create_table "ingredients", :force => true do |t|
-    t.string   "ingred_name",                    :null => false
-    t.string   "description",                    :null => false
-    t.decimal  "price",         :default => 0.0, :null => false
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
-    t.integer  "preference_id"
+    t.string   "ingred_name",                  :null => false
+    t.string   "description",                  :null => false
+    t.decimal  "price",       :default => 0.0, :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+  end
+
+  create_table "ingredients_preferences", :id => false, :force => true do |t|
+    t.integer "ingredient_id"
+    t.integer "preference_id"
   end
 
   create_table "orders", :force => true do |t|
@@ -52,14 +61,13 @@ ActiveRecord::Schema.define(:version => 20120416232222) do
   end
 
   create_table "preferences", :force => true do |t|
-    t.integer  "quantity",                                    :default => 1,   :null => false
-    t.string   "size",                                                         :null => false
-    t.string   "crust",                                                        :null => false
-    t.decimal  "price",         :precision => 8, :scale => 2, :default => 0.0, :null => false
-    t.datetime "created_at",                                                   :null => false
-    t.datetime "updated_at",                                                   :null => false
+    t.integer  "quantity",                                 :default => 1,   :null => false
+    t.string   "size",                                                      :null => false
+    t.string   "crust",                                                     :null => false
+    t.decimal  "price",      :precision => 8, :scale => 2, :default => 0.0, :null => false
+    t.datetime "created_at",                                                :null => false
+    t.datetime "updated_at",                                                :null => false
     t.integer  "order_id"
-    t.integer  "ingredient_id"
   end
 
   create_table "taxes", :force => true do |t|

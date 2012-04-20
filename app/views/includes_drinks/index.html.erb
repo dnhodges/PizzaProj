@@ -4,8 +4,8 @@
   <tr>
     <th>Drink name</th>
     <th>Manufacturer</th>
-    <th></th>
-    <th></th>
+    <th>Description</th>
+    <th>Price</th>
     <th></th>
   </tr>
 
@@ -13,6 +13,8 @@
   <tr>
     <td><%= includes_drink.drink_name %></td>
     <td><%= includes_drink.manufacturer %></td>
+    <td><%= includes_drink.description %></td>
+    <td><%= includes_drink.price %></td>
     <td><%= link_to 'Show', includes_drink %></td>
     <td><%= link_to 'Edit', edit_includes_drink_path(includes_drink) %></td>
     <td><%= link_to 'Destroy', includes_drink, confirm: 'Are you sure?', method: :delete %></td>

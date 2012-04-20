@@ -15,6 +15,17 @@
   <%= @order.delivered %>
 </p>
 
+
+<% for id in @order.includes_drink_ids.each %>
+	<p>
+	<b>Drink Name:</b>
+	<% d = IncludesDrink.find(id) %>
+	<%= d.drink_name %>
+	</p>
+<% end %>
+
+
+
 <%="Order inspect:"%>
 <%=@order.inspect %>
 <% for preference in @order.preferences %>
@@ -39,13 +50,14 @@
 	</p>
 	<%="Preference inspect:"%>
 	<%=preference.inspect%>
-	<% for ingredient in preference.ingredients %>
 	<p>
-	<b>Ingredient Name:</b>
-	<%= ingredient.ingred_name %>
-	</p>
-	<% end %>
 
+	<% for idplz in preference.ingredient_ids.each %>
+		<b>Ingredient Name:</b>
+		<% i = Ingredient.find(idplz) %>
+		<%= i.ingred_name %>
+		</p>
+	<% end %>
 <% end %>
 
 

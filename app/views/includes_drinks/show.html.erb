@@ -9,7 +9,15 @@
   <b>Manufacturer:</b>
   <%= @includes_drink.manufacturer %>
 </p>
+<p>
+  <b>Description:</b>
+  <%= @includes_drink.description %>
+</p>
 
+<p>
+  <b>Price:</b>
+  <%= @includes_drink.price %>
+</p>
 
 <%= link_to 'Edit', edit_includes_drink_path(@includes_drink) %> |
 <%= link_to 'Back', includes_drinks_path %>

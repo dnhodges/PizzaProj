@@ -7,7 +7,7 @@ class Ingredient < ActiveRecord::Base
 
 	#belongs_to :preference
 
-	has_many :preferences
+	has_and_belongs_to_many :preferences
 	#has_many :orders, :through => :preferences#, :foreign_key => :order_id
 	#accepts_nested_attributes_for :preferences#, :reject_if => lambda { |a| a[:size].blank? }, :allow_destroy => true
 	#accepts_nested_attributes_for :orders

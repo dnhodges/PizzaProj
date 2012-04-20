@@ -28,8 +28,12 @@ class OrdersController < ApplicationController
     @order = Order.new
     #@order.preferences.build.build_ingredient
 
-    preference = @order.preferences.build
-    preference.ingredients.build
+    includes_drink = @order.includes_drinks.build
+    
+    2.times do
+      preference = @order.preferences.build
+      2.times {preference.ingredients.build}
+    end
 
     respond_to do |format|
       format.html # new.html.erb

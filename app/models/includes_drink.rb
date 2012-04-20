@@ -7,6 +7,6 @@ class IncludesDrink < ActiveRecord::Base
 
 	validates :drink_name, :manufacturer, length: {:in => 1..15}
 	validates :description, length: {:in => 1..50}
-	belongs_to :order
+	has_and_belongs_to_many :orders
 
 end
