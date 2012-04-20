@@ -8,12 +8,12 @@ class Order < ActiveRecord::Base
 	validates :price, numericality: {greater_than_or_equal_to: 0}
 
 	belongs_to :customer
-	
-	has_and_belongs_to_many :includes_drinks#, :dependent => destroy
-	accepts_nested_attributes_for  :includes_drinks
 
-	has_many :preferences#, :dependent => :destroy
-	accepts_nested_attributes_for :preferences#, :reject_if => lambda { |a| a[:size].blank? }, :allow_destroy => true
+	has_and_belongs_to_many :includes_drinks#, :dependent => destroy
+	accepts_nested_attributes_for  :includes_drinks, :allow_destroy => true
+
+	has_many :preferences, :dependent => :destroy
+	accepts_nested_attributes_for :preferences, :allow_destroy => true#, :reject_if => lambda { |a| a[:size].blank? }, :allow_destroy => true
 
 	#has_many :ingredients#, :through => :preferences#, :foreign_key => :ingredient_id
 	#accepts_nested_attributes_for :ingredients

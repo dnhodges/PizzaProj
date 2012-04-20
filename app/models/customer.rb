@@ -6,7 +6,7 @@ class Customer < ActiveRecord::Base
 	has_secure_password
 
 	has_many :orders
-
+	accepts_nested_attributes_for :orders, :allow_destroy => true
 	# Length validations
 	validates :email, :password_digest, length: {:in => 1..50}
 	validates :first_name, :last_name, length: {:in => 1..20}

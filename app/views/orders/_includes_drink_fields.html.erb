@@ -1,0 +1,5 @@
+<%= f.collection_select(:includes_drink_ids, IncludesDrink.all, :id, :drink_name, {:include_blank => true}, {:multiple => true, :size=>4}) %>
+
+<!--
+<%#= f.check_box :_destroy %>
+<%#= f.label :_destroy, "Remove Drink" %>-->

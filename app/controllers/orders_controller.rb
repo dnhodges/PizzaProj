@@ -29,9 +29,11 @@ class OrdersController < ApplicationController
     #@order.preferences.build.build_ingredient
 
     includes_drink = @order.includes_drinks.build
-    
+
+
     2.times do
       preference = @order.preferences.build
+
       2.times {preference.ingredients.build}
     end
 

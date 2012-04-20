@@ -52,9 +52,9 @@
 	<%=preference.inspect%>
 	<p>
 
-	<% for idplz in preference.ingredient_ids.each %>
+	<% for id in preference.ingredient_ids.each %>
 		<b>Ingredient Name:</b>
-		<% i = Ingredient.find(idplz) %>
+		<% i = Ingredient.find(id) %>
 		<%= i.ingred_name %>
 		</p>
 	<% end %>

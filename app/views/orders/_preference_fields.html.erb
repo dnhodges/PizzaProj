@@ -1,19 +1,13 @@
 <div class="field">
-  <%= builder.label "Enter quantity:" %>
-  <%= builder.number_field :quantity %>
+  <%= p.label "Enter quantity:" %>
+  <%= p.number_field :quantity %>
 </div>
 <div class="field">
-  Select size: <%= builder.select :size, [["Select size", nil], 'S', 'M', 'L']%>
+  Select size: <%= p.select :size, [["Select size", nil], 'S', 'M', 'L']%> <!-- figure out how to do this from the model remove-->
 </div>
 <div class="field">
-  Select crust: <%= builder.select :crust, [["Select crust", nil], 'Thick', 'Thin', 'Stuffed'] %>
+  Select crust: <%= p.select :crust, [["Select crust", nil], 'Thick', 'Thin', 'Stuffed'] %>
 </div>
 
-
-<%= builder.fields_for :ingredients do |ib| %>
-  <%= render "ingredient_fields", :ib=>ib %>
-<% end %>
-
-
-<!--
--->
+<%= p.check_box :_destroy %>
+<%= p.label :_destroy, "Remove Preference" %>

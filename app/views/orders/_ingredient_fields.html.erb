@@ -1,3 +1,4 @@
-<div class="field">
-  Select ingredient: <%= ib.select(:ingred_name, Ingredient.all.collect {|i| i.ingred_name}, {:include_blank => "None"} ) %>
-</div>
+<%= p.collection_select(:ingredient_ids, Ingredient.all, :id, :ingred_name, {:include_blank => true}, {:multiple => true, :size=>4}) %>
+
+<%= p.check_box :_destroy %>
+<%= p.label :_destroy, "Remove Ingredient" %>

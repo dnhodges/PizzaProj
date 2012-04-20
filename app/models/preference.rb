@@ -5,7 +5,7 @@ class Preference < ActiveRecord::Base
 	#belongs_to :ingredient
 	has_and_belongs_to_many :ingredients
 	#accepts_nested_attributes_for :order
-	accepts_nested_attributes_for :ingredients
+	accepts_nested_attributes_for :ingredients, :allow_destroy => true
 	#has_many :ingredients 
 	#accepts_nested_attributes_for :ingredients#, :reject_if => lambda { |a| a[:ingred_name].blank? }, :allow_destroy => true
 

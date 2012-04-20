@@ -1,46 +1,15 @@
-
-
 <%= form_for(@order) do |f| %>
-  <% if @order.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
 
-      <ul>
-      <% @order.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render 'order_fields', :f => f %>
 
-  <div class="field">
-    <%= f.label :order_time %><br />
-    <%= f.datetime_select :order_time %>
-  </div>
-  <div class="field">
-    <%= f.label :price %><br />
-    <%= f.text_field :price %>
-  </div>
-  <div class="field">
-    <%= f.label :delivered, "Delivered Yet?" %>
-    <%= f.check_box :delivered %>
-  </div>
+  <%= render 'includes_drink_fields', :f => f%>
 
-
-   <%= f.collection_select(:includes_drink_ids, IncludesDrink.all, :id, :drink_name, {:include_blank => true}, {:multiple => true, :size=>4}) %>
 
   <%= f.fields_for :preferences do |p| %>
-    <div class="field">
-      <%= p.label "Enter quantity:" %>
-      <%= p.number_field :quantity %>
-    </div>
-    <div class="field">
-      Select size: <%= p.select :size, [["Select size", nil], 'S', 'M', 'L']%>
-    </div>
-    <div class="field">
-      Select crust: <%= p.select :crust, [["Select crust", nil], 'Thick', 'Thin', 'Stuffed'] %>
-    </div>
-   <%= p.collection_select(:ingredient_ids, Ingredient.all, :id, :ingred_name, {:include_blank => true}, {:multiple => true, :size=>4}) %>
+    
+    <%= render 'preference_fields', :p => p %>
+    
+    <%= render 'ingredient_fields', :p => p %>
 
   <% end %>
 
